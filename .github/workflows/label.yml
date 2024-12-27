@@ -1,0 +1,59 @@
+# This workflow will triage pull requests and apply a label based on the
+# paths that are modified in the pull request.
+#
+# To use this workflow, you will need to set up a .github/labeler.yml
+# file with configuration. For more information, see:
+# https://github.com/actions/labeler
+
+name: Labeler
+
+on: [pull_request_target]
+
+permissions:
+  contents: read
+  pull-requests: write
+
+jobs:
+  label:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Validate Labeler Configuration
+        run: |
+          if [ ! -f ".github/labeler.yml" ]; then
+            echo "Error: .github/labeler.yml not found."
+            exit 1
+          fi
+          echo "Labeler configuration file found."
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Apply Labels
+        uses: actions/labeler@v4
+        with:
+          repo-token: "${{ secrets.GITHUB_TOKEN }}"
+
+      - name: Notify Slack
+        if: always()
+        uses: 8398a7/action-slack@v4
+        with:
+          status: ${{ job.status }}
+          fields: workflow,job,commit,repo,ref,author,took
+        env:
+          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
+
+      - name: Post Comment on Pull Request
+        if: ${{ always() }}
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          header: "Labeler Bot"
+          message: |
+            Pull Request labels have been updated by the Labeler Bot.
+            - Labels Applied: ${{ steps.label.outputs.labels }}
