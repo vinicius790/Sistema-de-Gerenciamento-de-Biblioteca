@@ -1,0 +1,51 @@
+{
+    "cSpell.words": [
+        "autor",
+        "biblioteca",
+        "devolver",
+        "Disponivel",
+        "disponível",
+        "emprestar",
+        "empréstimo",
+        "Livro",
+        "Membro",
+        "quantidade",
+        "titulo"
+    ],
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.tabSize": 4,
+    "files.autoSave": "onFocusChange",
+    "files.trimTrailingWhitespace": true,
+    "files.insertFinalNewline": true,
+    "files.exclude": {
+        "**/.classpath": true,
+        "**/.project": true,
+        "**/.settings": true,
+        "**/.factorypath": true
+    },
+    "java.configuration.updateBuildConfiguration": "interactive",
+    "java.errors.incompleteClasspath.severity": "ignore",
+    "java.compile.nullAnalysis.mode": "automatic",
+    "java.format.settings.url": ".vscode/java-formatter.xml",
+    "java.format.settings.profile": "GoogleStyle",
+    "java.referencesCodeLens.enabled": true,
+    "java.implementorsCodeLens.enabled": true,
+    "java.checkstyle.configuration": "google_checks.xml",
+    "java.dependency.syncWithFolderExplorer": true,
+    "java.import.exclusions": [
+        "**/node_modules/**",
+        "**/.metadata/**",
+        "**/archetype-resources/**",
+        "**/META-INF/maven/**"
+    ],
+    "java.import.gradle.java.home": "/path/to/your/java/home",
+    "java.import.maven.enabled": true,
+    "java.maven.downloadSources": true,
+    "java.progressReports.enabled": true,
+    "java.referencesCodeLens.showReferencesCodeLens": true,
+    "java.saveActions.organizeImports": true,
+    "java.saveActions.removeUnusedImports": true,
+    "java.trace.server": "verbose",
+    "maven.executable.path": "/path/to/your/maven/bin/mvn"
+}
